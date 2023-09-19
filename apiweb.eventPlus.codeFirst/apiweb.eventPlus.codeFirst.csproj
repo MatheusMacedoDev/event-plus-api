@@ -24,7 +24,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Contexts\" />
     <Folder Include="Interfaces\" />
     <Folder Include="Utils\" />
     <Folder Include="ViewModels\" />

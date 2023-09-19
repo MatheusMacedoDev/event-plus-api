@@ -10,9 +10,9 @@ namespace apiweb.eventPlus.codeFirst.Domains
         [Key]
         public Guid Id { get; set; } = Guid.NewGuid();
 
-        [Column(TypeName = "VARCHAR(20)")]
+        [Column(TypeName = "BIT")]
         [Required(ErrorMessage = "O estado da presença é obrigatório")]
-        public string PresenceState { get; set; }
+        public bool PresenceConfirmed { get; set; }
 
         // User Reference
 
@@ -20,7 +20,7 @@ namespace apiweb.eventPlus.codeFirst.Domains
         public Guid UserId { get; set; }
 
         [ForeignKey(nameof(UserId))]
-        public User User { get; set; }
+        public User? User { get; set; }
 
         // Event Reference
 
@@ -28,6 +28,6 @@ namespace apiweb.eventPlus.codeFirst.Domains
         public Guid EventId { get; set; }
 
         [ForeignKey(nameof(EventId))]
-        public Event Event { get; set; }
+        public Event? Event { get; set; }
     }
 }

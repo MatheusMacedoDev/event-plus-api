@@ -13,13 +13,13 @@ namespace apiweb.eventPlus.codeFirst.Domains
 
         [Column(TypeName = "VARCHAR(100)")]
         [Required(ErrorMessage = "O nome fantasia é obrigatório")]
-        public string FancyName { get; set; } 
+        public string? FancyName { get; set; } 
         
         [Column(TypeName = "CHAR(14)")]
         [Required(ErrorMessage = "O CNPJ é obrigatório")]
-        public string CNPJ { get; set; } 
+        public string? CNPJ { get; set; } 
         [Column(TypeName = "CHAR(14)")]
         [Required(ErrorMessage = "O endereço é obrigatório")]
-        public string Address { get; set; }
+        public string? Address { get; set; }
     }
 }

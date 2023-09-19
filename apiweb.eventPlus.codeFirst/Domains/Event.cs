@@ -11,11 +11,11 @@ namespace apiweb.eventPlus.codeFirst.Domains
 
         [Column(TypeName = "VARCHAR(100)")]
         [Required(ErrorMessage = "O nome do evento é obrigatório")]
-        public string Name { get; set; }
+        public string? Name { get; set; }
         
         [Column(TypeName = "TEXT")]
         [Required(ErrorMessage = "A descrição do evento é obrigatório")]
-        public string Description { get; set; }
+        public string? Description { get; set; }
 
         [Column(TypeName = "Date")]
         public DateTime Date { get; set; }

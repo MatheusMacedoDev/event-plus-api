@@ -11,6 +11,6 @@ namespace apiweb.eventPlus.codeFirst.Domains
 
         [Column(TypeName = "VARCHAR(100)")]
         [Required(ErrorMessage = "O nome do tipo do evento é obrigatório")]
-        public string TypeName { get; set; }
+        public string? TypeName { get; set; }
     }
 }

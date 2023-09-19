@@ -11,7 +11,7 @@ namespace apiweb.eventPlus.codeFirst.Domains
 
         [Column(TypeName = "TEXT")]
         [Required(ErrorMessage = "O comentário do evento deve conter um texto")]
-        public string Description { get; set; }
+        public string? Description { get; set; }
 
         [Column(TypeName = "BIT")]
         public bool ShouldShow { get; set; } = false;
@@ -22,7 +22,7 @@ namespace apiweb.eventPlus.codeFirst.Domains
         public Guid UserId { get; set; }
 
         [ForeignKey(nameof(UserId))]
-        public User User { get; set; }
+        public User? User { get; set; }
 
         // Event Reference
 
@@ -30,6 +30,6 @@ namespace apiweb.eventPlus.codeFirst.Domains
         public Guid EventId { get; set; }
 
         [ForeignKey(nameof(EventId))]
-        public Event Event { get; set; }
+        public Event? Event { get; set; }
     }
 }
