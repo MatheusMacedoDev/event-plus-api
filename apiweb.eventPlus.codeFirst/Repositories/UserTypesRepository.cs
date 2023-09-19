@@ -21,7 +21,13 @@ namespace apiweb.eventPlus.codeFirst.Repositories
 
         public void Delete(Guid id)
         {
-            throw new NotImplementedException();
+            UserType findedUserType = GetById(id);
+
+            if (findedUserType != null)
+            {
+                _context.Remove(findedUserType);
+                _context.SaveChanges();
+            }
         }
 
         public UserType GetById(Guid id)
