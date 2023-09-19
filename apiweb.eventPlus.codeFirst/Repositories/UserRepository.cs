@@ -21,7 +21,25 @@ namespace apiweb.eventPlus.codeFirst.Repositories
 
         public User GetById(Guid id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                User user = _context.Users
+                    .Select(user => new User
+                    {
+                        Id = user.Id,
+                        UserName = user.UserName,
+                        UserType = new UserType
+                        {
+                            TypeName = user.UserType!.TypeName
+                        }
+                    }).FirstOrDefault(user => user.Id == id)!;
+
+                return user;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public void Register(User user)

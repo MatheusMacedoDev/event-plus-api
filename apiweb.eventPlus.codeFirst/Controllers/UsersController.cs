@@ -18,6 +18,21 @@ namespace apiweb.eventPlus.codeFirst.Controllers
             _userRepository = new UserRepository();
         }
 
+        [HttpGet]
+        public IActionResult GetById(Guid id)
+        {
+            try
+            {
+                User findedUser = _userRepository.GetById(id);
+
+                return Ok(findedUser);
+            }
+            catch (Exception err)
+            {
+                return BadRequest(err.Message);
+            }
+        }
+
         [HttpPost]
         public IActionResult Register(User user)
         {
