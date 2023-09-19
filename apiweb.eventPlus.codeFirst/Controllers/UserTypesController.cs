@@ -77,5 +77,20 @@ namespace apiweb.eventPlus.codeFirst.Controllers
                 return BadRequest(err.Message);
             }
         }
+
+        [HttpPut]
+        public IActionResult Update(UserType userType)
+        {
+            try
+            {
+                _userTypeRepository.Update(userType);
+
+                return NoContent();
+            }
+            catch (Exception err)
+            {
+                return BadRequest(err.Message);
+            }
+        }
     }
 }

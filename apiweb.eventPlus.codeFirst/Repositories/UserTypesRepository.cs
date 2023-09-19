@@ -42,7 +42,15 @@ namespace apiweb.eventPlus.codeFirst.Repositories
 
         public void Update(UserType userType)
         {
-            throw new NotImplementedException();
+            UserType findedUserType = GetById(userType.Id);
+
+            if (findedUserType != null)
+            {
+                findedUserType.TypeName = userType.TypeName;
+
+                _context.UserTypes.Update(findedUserType);
+                _context.SaveChanges();
+            }
         }
     }
 }
