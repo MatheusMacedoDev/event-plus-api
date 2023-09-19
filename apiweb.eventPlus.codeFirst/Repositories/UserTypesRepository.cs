@@ -31,7 +31,7 @@ namespace apiweb.eventPlus.codeFirst.Repositories
 
         public List<UserType> ListAll()
         {
-            throw new NotImplementedException();
+            return _context.UserTypes.ToList();
         }
 
         public void Update(UserType userType)

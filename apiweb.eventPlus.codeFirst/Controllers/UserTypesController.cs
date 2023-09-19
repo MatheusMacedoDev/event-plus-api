@@ -32,5 +32,20 @@ namespace apiweb.eventPlus.codeFirst.Controllers
                 return BadRequest(err.Message);
             }
         }
+
+        [HttpGet]
+        public IActionResult ListAll()
+        {
+            try
+            {
+                List<UserType> userTypes = _userTypeRepository.ListAll();
+
+                return Ok(userTypes);
+            }
+            catch (Exception err)
+            {
+                return BadRequest(err.Message);
+            }
+        }
     }
 }
