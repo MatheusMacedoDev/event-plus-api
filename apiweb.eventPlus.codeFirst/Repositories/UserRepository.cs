@@ -16,7 +16,24 @@ namespace apiweb.eventPlus.codeFirst.Repositories
 
         public User GetByEmailAndPassword(string email, string password)
         {
-            throw new NotImplementedException();
+            try
+            {
+                User findedUser = _context.Users.FirstOrDefault(user => user.Email == email)!;
+
+                if (findedUser != null)
+                {
+                    if (Cryptography.IsEqualHashes(password, findedUser.Password!))
+                    {
+                        return findedUser;
+                    }
+                }
+
+                return null!;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public User GetById(Guid id)
