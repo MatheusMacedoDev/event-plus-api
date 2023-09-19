@@ -26,7 +26,7 @@ namespace apiweb.eventPlus.codeFirst.Repositories
 
         public UserType GetById(Guid id)
         {
-            throw new NotImplementedException();
+            return _context.UserTypes.FirstOrDefault(userType => userType.Id == id)!;
         }
 
         public List<UserType> ListAll()
