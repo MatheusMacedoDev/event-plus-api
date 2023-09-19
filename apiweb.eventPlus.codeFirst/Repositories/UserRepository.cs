@@ -18,7 +18,18 @@ namespace apiweb.eventPlus.codeFirst.Repositories
         {
             try
             {
-                User findedUser = _context.Users.FirstOrDefault(user => user.Email == email)!;
+                User findedUser = _context.Users
+                    .Select(user => new User
+                    {
+                        Id = user.Id,
+                        UserName = user.UserName,
+                        Email = user.Email,
+                        Password = user.Password,
+                        UserType = new UserType
+                        {
+                            TypeName = user.UserType!.TypeName
+                        }
+                    }).FirstOrDefault(user => user.Email == email)!;
 
                 if (findedUser != null)
                 {
