@@ -21,7 +21,7 @@ namespace apiweb.eventPlus.codeFirst.Repositories
 
         public List<EventType> ListAll()
         {
-            throw new NotImplementedException();
+            return _context.EventTypes.ToList();
         }
         public EventType GetById(Guid id)
         {
