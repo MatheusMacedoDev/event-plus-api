@@ -26,7 +26,20 @@ namespace apiweb.eventPlus.codeFirst.Repositories
 
         public Event GetById(Guid id)
         {
-            throw new NotImplementedException();
+            return _context.Events.Select(e => new Event()
+            {
+                Id = e.Id,
+                Name = e.Name,
+                EventType = new EventType()
+                {
+                    TypeName = e.EventType!.TypeName
+                },
+                Institution = new Institution()
+                {
+                    FancyName = e.Institution.FancyName
+                }
+
+            }).FirstOrDefault()!;
         }
 
         public List<Event> ListAll()
