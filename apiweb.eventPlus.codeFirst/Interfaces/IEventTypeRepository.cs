@@ -8,5 +8,6 @@ namespace apiweb.eventPlus.codeFirst.Interfaces
         void Update(EventType newData);
         List<EventType> ListAll();
         EventType GetById(Guid id);
+        void Delete(Guid id);
     }
 }

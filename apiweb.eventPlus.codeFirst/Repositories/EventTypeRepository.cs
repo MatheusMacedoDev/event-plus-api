@@ -40,5 +40,16 @@ namespace apiweb.eventPlus.codeFirst.Repositories
                 _context.SaveChanges();
             }
         }
+
+        public void Delete(Guid id)
+        {
+            EventType findedEventType = GetById(id);
+
+            if (findedEventType != null )
+            {
+                _context.EventTypes.Remove(findedEventType);
+                _context.SaveChanges();
+            }
+        }
     }
 }
