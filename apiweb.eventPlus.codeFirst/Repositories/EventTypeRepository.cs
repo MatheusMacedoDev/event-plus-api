@@ -30,7 +30,15 @@ namespace apiweb.eventPlus.codeFirst.Repositories
 
         public void Update(EventType newData)
         {
-            throw new NotImplementedException();
+            EventType findedEventType = GetById(newData.Id);
+
+            if (findedEventType != null)
+            {
+                findedEventType.TypeName = newData.TypeName;
+
+                _context.EventTypes.Update(findedEventType);
+                _context.SaveChanges();
+            }
         }
     }
 }
