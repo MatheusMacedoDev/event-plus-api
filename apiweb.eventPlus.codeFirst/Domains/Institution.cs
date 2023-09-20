@@ -18,7 +18,7 @@ namespace apiweb.eventPlus.codeFirst.Domains
         [Column(TypeName = "CHAR(14)")]
         [Required(ErrorMessage = "O CNPJ é obrigatório")]
         public string? CNPJ { get; set; } 
-        [Column(TypeName = "CHAR(14)")]
+        [Column(TypeName = "VARCHAR(200)")]
         [Required(ErrorMessage = "O endereço é obrigatório")]
         public string? Address { get; set; }
     }
