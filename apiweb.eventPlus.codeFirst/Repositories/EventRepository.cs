@@ -21,7 +21,7 @@ namespace apiweb.eventPlus.codeFirst.Repositories
 
         public void Delete(Guid id)
         {
-            Event findedEvent = GetById(id);
+            Event findedEvent = _context.Events.FirstOrDefault(e => e.Id == id)!;
 
             if (findedEvent != null)
             {
@@ -42,10 +42,10 @@ namespace apiweb.eventPlus.codeFirst.Repositories
                 },
                 Institution = new Institution()
                 {
-                    FancyName = e.Institution.FancyName
+                    FancyName = e.Institution!.FancyName
                 }
 
-            }).FirstOrDefault()!;
+            }).FirstOrDefault(e => e.Id == id)!;
         }
 
         public List<Event> ListAll()
@@ -60,7 +60,7 @@ namespace apiweb.eventPlus.codeFirst.Repositories
                 },
                 Institution = new Institution()
                 {
-                    FancyName = e.Institution.FancyName
+                    FancyName = e.Institution!.FancyName
                 }
 
             }).ToList();
@@ -68,7 +68,19 @@ namespace apiweb.eventPlus.codeFirst.Repositories
 
         public void Update(Event updatedEvent)
         {
-            throw new NotImplementedException();
+            Event findedEvent = _context.Events.FirstOrDefault(e => e.Id == updatedEvent.Id)!;
+
+            if (findedEvent != null)
+            {
+                findedEvent.Name = updatedEvent.Name;
+                findedEvent.Description = updatedEvent.Description;
+                findedEvent.Date = updatedEvent.Date;
+                findedEvent.EventTypeId = updatedEvent.EventTypeId;
+                findedEvent.InstitutionId = updatedEvent.InstitutionId;
+
+                _context.Events.Update(findedEvent);
+                _context.SaveChanges();
+            }
         }
     }
 }
