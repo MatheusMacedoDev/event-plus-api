@@ -31,5 +31,20 @@ namespace apiweb.eventPlus.codeFirst.Controllers
                 return BadRequest(err.Message);
             }
         }
+
+        [HttpGet]
+        public IActionResult ListAll()
+        {
+            try
+            {
+                List<Event> events = _eventRepository.ListAll();
+
+                return Ok(events);
+            }
+            catch (Exception err)
+            {
+                return BadRequest(err.Message);
+            }
+        }
     }
 }

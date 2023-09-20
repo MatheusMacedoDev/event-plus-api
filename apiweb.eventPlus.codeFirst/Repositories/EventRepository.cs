@@ -31,7 +31,20 @@ namespace apiweb.eventPlus.codeFirst.Repositories
 
         public List<Event> ListAll()
         {
-            throw new NotImplementedException();
+            return _context.Events.Select(e => new Event()
+            {
+                Id = e.Id,
+                Name = e.Name,
+                EventType = new EventType()
+                {
+                    TypeName = e.EventType!.TypeName
+                },
+                Institution = new Institution()
+                {
+                    FancyName = e.Institution.FancyName
+                }
+
+            }).ToList();
         }
 
         public void Update(Event updatedEvent)
