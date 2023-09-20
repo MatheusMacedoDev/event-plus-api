@@ -4,6 +4,9 @@ using apiweb.eventPlus.codeFirst.Repositories;
 using apiweb.eventPlus.codeFirst.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 
 namespace apiweb.eventPlus.codeFirst.Controllers
 {
@@ -31,7 +34,25 @@ namespace apiweb.eventPlus.codeFirst.Controllers
                     return NotFound("Dados inválidos");
                 }
 
-                return Ok(findedUser);
+                // Create token
+
+                var claims = new[]
+                {
+                    new Claim(JwtRegisteredClaimNames.Jti, findedUser.Id.ToString()),
+                    new Claim(JwtRegisteredClaimNames.Email, findedUser.Email!),
+                    new Claim(ClaimTypes.Role, findedUser.UserType!.TypeName!)
+                };
+
+                var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("event-plus-authentication-webapi-dev"));
+
+                var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+                var token = new JwtSecurityToken(issuer: "apiweb.eventPlus.codeFirst", audience: "apiweb.eventPlus.codeFirst", claims: claims, expires: DateTime.Now.AddMinutes(5), signingCredentials: credentials);
+
+                return Ok(new
+                {
+                    token = new JwtSecurityTokenHandler().WriteToken(token)
+                });
             }
             catch (Exception err)
             {
