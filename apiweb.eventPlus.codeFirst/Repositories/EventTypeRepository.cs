@@ -25,7 +25,7 @@ namespace apiweb.eventPlus.codeFirst.Repositories
         }
         public EventType GetById(Guid id)
         {
-            throw new NotImplementedException();
+            return _context.EventTypes.FirstOrDefault(type => type.Id == id)!;
         }
 
         public void Update(EventType newData)

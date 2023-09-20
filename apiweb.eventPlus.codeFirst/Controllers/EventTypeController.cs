@@ -47,5 +47,20 @@ namespace apiweb.eventPlus.codeFirst.Controllers
                 return BadRequest(err.Message);
             }
         }
+
+        [HttpGet("{id}")]
+        public IActionResult GetById(Guid id)
+        {
+            try
+            {
+                EventType eventType = _eventTypeRepository.GetById(id);
+
+                return Ok(eventType);
+            }
+            catch (Exception err)
+            {
+                return BadRequest(err.Message);
+            }
+        }
     }
 }
