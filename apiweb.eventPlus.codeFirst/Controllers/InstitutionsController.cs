@@ -8,11 +8,11 @@ namespace apiweb.eventPlus.codeFirst.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Produces("application/json")]
-    public class InstitutionController : ControllerBase
+    public class InstitutionsController : ControllerBase
     {
         private readonly IInstitutionRepository _institutionRepository;
 
-        public InstitutionController()
+        public InstitutionsController()
         {
             _institutionRepository = new InstitutionRepository();
         }
