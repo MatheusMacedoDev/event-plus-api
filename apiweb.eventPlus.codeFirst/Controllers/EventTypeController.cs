@@ -1,14 +1,17 @@
 ﻿using apiweb.eventPlus.codeFirst.Domains;
 using apiweb.eventPlus.codeFirst.Interfaces;
 using apiweb.eventPlus.codeFirst.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Data;
 
 namespace apiweb.eventPlus.codeFirst.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     [Produces("application/json")]
+    [Authorize(Roles = "Administrador")]
     public class EventTypeController : ControllerBase
     {
         private readonly IEventTypeRepository _eventTypeRepository;

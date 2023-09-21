@@ -1,6 +1,7 @@
 ﻿using apiweb.eventPlus.codeFirst.Domains;
 using apiweb.eventPlus.codeFirst.Interfaces;
 using apiweb.eventPlus.codeFirst.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace apiweb.eventPlus.codeFirst.Controllers
@@ -8,6 +9,7 @@ namespace apiweb.eventPlus.codeFirst.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Produces("application/json")]
+    [Authorize]
     public class EventsController : ControllerBase
     {
         private readonly IEventRepository _eventRepository;
@@ -18,6 +20,7 @@ namespace apiweb.eventPlus.codeFirst.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Administrador")]
         public IActionResult Create(Event newEvent)
         {
             try
@@ -63,6 +66,7 @@ namespace apiweb.eventPlus.codeFirst.Controllers
         }
 
         [HttpDelete]
+        [Authorize(Roles = "Administrador")]
         public IActionResult Delete(Guid id)
         {
             try
@@ -78,6 +82,7 @@ namespace apiweb.eventPlus.codeFirst.Controllers
         }
 
         [HttpPut]
+        [Authorize(Roles = "Administrador")]
         public IActionResult Update(Event newEvent)
         {
             try

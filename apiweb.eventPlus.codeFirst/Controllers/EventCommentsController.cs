@@ -1,14 +1,17 @@
 ﻿using apiweb.eventPlus.codeFirst.Domains;
 using apiweb.eventPlus.codeFirst.Interfaces;
 using apiweb.eventPlus.codeFirst.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Data;
 
 namespace apiweb.eventPlus.codeFirst.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     [Produces("application/json")]
+    [Authorize]
     public class EventCommentsController : ControllerBase
     {
         private readonly IEventCommentRepository _eventCommentRepository;
@@ -19,6 +22,7 @@ namespace apiweb.eventPlus.codeFirst.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Comum")]
         public IActionResult Create(EventComment eventComment)
         {
             try
@@ -34,6 +38,7 @@ namespace apiweb.eventPlus.codeFirst.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Administrador")]
         public IActionResult ListAll()
         {
             try
@@ -65,6 +70,7 @@ namespace apiweb.eventPlus.codeFirst.Controllers
 
 
         [HttpGet("{id}")]
+        [Authorize(Roles = "Administrador")]
         public IActionResult GetById(Guid id)
         {
             try
@@ -80,6 +86,7 @@ namespace apiweb.eventPlus.codeFirst.Controllers
         }
 
         [HttpDelete]
+        [Authorize(Roles = "Administrador")]
         public IActionResult Delete(Guid id)
         {
             try

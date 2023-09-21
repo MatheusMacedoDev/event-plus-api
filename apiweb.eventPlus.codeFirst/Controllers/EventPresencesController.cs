@@ -1,13 +1,16 @@
 ﻿using apiweb.eventPlus.codeFirst.Domains;
 using apiweb.eventPlus.codeFirst.Interfaces;
 using apiweb.eventPlus.codeFirst.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Data;
 
 namespace apiweb.eventPlus.codeFirst.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     [Produces("application/json")]
+    [Authorize]
     public class EventPresencesController : ControllerBase
     {
         private readonly IEventPresenceRepository _eventPresenceRepository;
@@ -18,6 +21,7 @@ namespace apiweb.eventPlus.codeFirst.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Comum")]
         public IActionResult Create(EventPresence eventPresence)
         {
             try
@@ -33,6 +37,7 @@ namespace apiweb.eventPlus.codeFirst.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Administrador")]
         public IActionResult ListAll()
         {
             try
@@ -48,6 +53,7 @@ namespace apiweb.eventPlus.codeFirst.Controllers
         }
 
         [HttpGet("{userId}")]
+        [Authorize(Roles = "Comum")]
         public IActionResult ListByUserId(Guid userId)
         {
             try
@@ -62,7 +68,8 @@ namespace apiweb.eventPlus.codeFirst.Controllers
             }
         }
 
-        [HttpDelete] 
+        [HttpDelete]
+        [Authorize(Roles = "Comum")]
         public IActionResult Delete(Guid id)
         {
             try
@@ -78,6 +85,7 @@ namespace apiweb.eventPlus.codeFirst.Controllers
         }
 
         [HttpPut]
+        [Authorize(Roles = "Comum")]
         public IActionResult Update(EventPresence eventPresence)
         {
             try
