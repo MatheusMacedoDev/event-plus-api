@@ -26,7 +26,7 @@ namespace apiweb.eventPlus.codeFirst.Repositories
 
         public EventComment GetById(Guid id)
         {
-            throw new NotImplementedException();
+            return _context.EventComments.FirstOrDefault(e => e.Id == id)!;
         }
 
         public List<EventComment> ListAll()
