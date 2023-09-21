@@ -31,7 +31,7 @@ namespace apiweb.eventPlus.codeFirst.Repositories
 
         public List<EventComment> ListAll()
         {
-            throw new NotImplementedException();
+            return _context.EventComments.ToList();
         }
     }
 }
