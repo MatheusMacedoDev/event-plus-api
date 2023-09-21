@@ -21,7 +21,13 @@ namespace apiweb.eventPlus.codeFirst.Repositories
 
         public void Delete(Guid id)
         {
-            throw new NotImplementedException();
+            EventPresence findedEventPresence = _context.EventPresences.FirstOrDefault(e => e.Id == id);
+
+            if (findedEventPresence != null)
+            {
+                _context.EventPresences.Remove(findedEventPresence);
+                _context.SaveChanges();
+            }
         }
 
         public List<EventPresence> ListByUserId(Guid userId)

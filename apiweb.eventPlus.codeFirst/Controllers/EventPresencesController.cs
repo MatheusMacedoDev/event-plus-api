@@ -46,5 +46,20 @@ namespace apiweb.eventPlus.codeFirst.Controllers
                 return BadRequest();
             }
         }
+
+        [HttpDelete] 
+        public IActionResult Delete(Guid id)
+        {
+            try
+            {
+                _eventPresenceRepository.Delete(id);
+
+                return NoContent();
+            }
+            catch (Exception err)
+            {
+                return BadRequest(err.Message);
+            }
+        }
     }
 }
