@@ -39,11 +39,26 @@ namespace apiweb.eventPlus.codeFirst.Controllers
             {
                 List<EventPresence> eventPresences = _eventPresenceRepository.ListAll();
 
-                return Ok(eventPresences);  
+                return Ok(eventPresences);
             }
             catch (Exception err)
             {
                 return BadRequest();
+            }
+        }
+
+        [HttpGet("{userId}")]
+        public IActionResult ListByUserId(Guid userId)
+        {
+            try
+            {
+                List<EventPresence> userEventPresences = _eventPresenceRepository.ListByUserId(userId);
+
+                return Ok(userEventPresences);
+            }
+            catch (Exception err)
+            {
+                return BadRequest(err.Message);
             }
         }
 

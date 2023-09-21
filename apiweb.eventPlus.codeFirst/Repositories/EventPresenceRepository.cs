@@ -32,7 +32,9 @@ namespace apiweb.eventPlus.codeFirst.Repositories
 
         public List<EventPresence> ListByUserId(Guid userId)
         {
-            throw new NotImplementedException();
+            return _context.EventPresences
+                .Where(eventPresence => eventPresence.UserId == userId)
+                .ToList();
         }
 
         public List<EventPresence> ListAll()
