@@ -57,12 +57,7 @@ namespace apiweb.eventPlus.codeFirst.Repositories
                 EventType = new EventType()
                 {
                     TypeName = e.EventType!.TypeName
-                },
-                Institution = new Institution()
-                {
-                    FancyName = e.Institution!.FancyName
                 }
-
             }).ToList();
         }
 
