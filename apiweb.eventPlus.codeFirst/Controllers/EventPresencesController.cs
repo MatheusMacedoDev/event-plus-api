@@ -61,5 +61,20 @@ namespace apiweb.eventPlus.codeFirst.Controllers
                 return BadRequest(err.Message);
             }
         }
+
+        [HttpPut]
+        public IActionResult Update(EventPresence eventPresence)
+        {
+            try
+            {
+                _eventPresenceRepository.Update(eventPresence);
+
+                return NoContent();
+            }
+            catch (Exception err)
+            {
+                return BadRequest(err.Message);
+            }
+        }
     }
 }

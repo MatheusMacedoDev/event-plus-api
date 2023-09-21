@@ -7,7 +7,7 @@ namespace apiweb.eventPlus.codeFirst.Interfaces
         void Create(EventPresence newEventComment);
         List<EventPresence> ListAll();
         List<EventPresence> ListByUserId(Guid userId);
-        void Update(EventComment updatedEventComment);
+        void Update(EventPresence updatedEventComment);
         void Delete(Guid id);
     }
 }

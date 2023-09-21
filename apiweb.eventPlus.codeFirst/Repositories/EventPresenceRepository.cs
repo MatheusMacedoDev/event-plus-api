@@ -40,9 +40,19 @@ namespace apiweb.eventPlus.codeFirst.Repositories
             return _context.EventPresences.ToList();
         }
 
-        public void Update(EventComment updatedEventComment)
+        public void Update(EventPresence updatedEventComment)
         {
-            throw new NotImplementedException();
+            EventPresence findedEventPresence = _context.EventPresences.FirstOrDefault(e => e.Id == updatedEventComment.Id)!;
+
+            if (findedEventPresence != null)
+            {
+                findedEventPresence.PresenceConfirmed = updatedEventComment.PresenceConfirmed;
+                findedEventPresence.UserId = updatedEventComment.UserId;
+                findedEventPresence.EventId = updatedEventComment.EventId;
+
+                _context.EventPresences.Update(findedEventPresence);
+                _context.SaveChanges();
+            }
         }
     }
 }
