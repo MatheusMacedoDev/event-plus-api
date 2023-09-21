@@ -48,6 +48,22 @@ namespace apiweb.eventPlus.codeFirst.Controllers
             }
         }
 
+        [HttpGet("ListByEvent/{eventId}")]
+        public IActionResult ListByEvent(Guid eventId)
+        {
+            try
+            {
+                List<EventComment> eventComments = _eventCommentRepository.ListByEvent(eventId);
+
+                return Ok(eventComments);
+            }
+            catch (Exception err)
+            {
+                return BadRequest(err.Message);
+            }
+        }
+
+
         [HttpGet("{id}")]
         public IActionResult GetById(Guid id)
         {

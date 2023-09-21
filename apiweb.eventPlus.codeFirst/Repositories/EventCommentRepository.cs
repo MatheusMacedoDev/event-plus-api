@@ -39,5 +39,12 @@ namespace apiweb.eventPlus.codeFirst.Repositories
         {
             return _context.EventComments.ToList();
         }
+
+        public List<EventComment> ListByEvent(Guid eventId)
+        {
+            return _context.EventComments
+                .Where(e => e.EventId == eventId && e.ShouldShow == true)
+                .ToList();
+        }
     }
 }
